@@ -32,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.unitconverter.ui.theme.UnitConverterTheme
-import kotlin.math.roundToInt
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +62,7 @@ fun UnitConverter() {
 
     fun convertUnits() {
         val inputValueDouble = inputValue.toDoubleOrNull() ?: 0.0
-        val result = (inputValueDouble * conversionFactor.value * 100.0 / oconversionFactor.value).roundToInt() / 100.0
+        val result = inputValueDouble * (conversionFactor.value / oconversionFactor.value)
         outputValue = result.toString()
     }
 
@@ -87,7 +86,7 @@ fun UnitConverter() {
         Spacer(modifier = Modifier.height(16.dp))
 
         Row {
-            // Input Button
+            // Input Unit Button
             Box {
                 Button(onClick = { iExpanded = true }) {
                     Text(text = inputUnit)
@@ -139,7 +138,7 @@ fun UnitConverter() {
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            // Output Button
+            // Output Unit Button
             Box {
                 Button(onClick = { oExpanded = true }) {
                     Text(text = outputUnit)
